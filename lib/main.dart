@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:students_details/Screens/studentdetailsscreen.dart';
+import 'package:students_details/Screens/aboutscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -84,6 +85,18 @@ class _SidebarLayoutState extends State<SidebarLayout> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const StudentDetails(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('About'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutPage(),
                   ),
                 );
               },
