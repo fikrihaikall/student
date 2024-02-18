@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:students_details/Screens/loginscreen.dart';
+import 'package:students_details/Screens/registerscreen.dart';
 import 'package:students_details/Screens/studentdetailsscreen.dart';
 import 'package:students_details/Screens/aboutscreen.dart';
 
@@ -17,10 +19,17 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.teal,
-        
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginScreen(),  // Halaman login sebagai route awal
+        '/main': (context) => SidebarLayout(currentScreen: const StudentDetails()), // Ganti dengan halaman yang sesuai
+        '/about': (context) => AboutPage(),
+        '/register': (context) => const RegisterScreen(),
+      },
       // home: const StudentDetails(),
-      home: SidebarLayout(currentScreen: const StudentDetails()),
+      // home: const LoginScreen(),
+      // home: SidebarLayout(currentScreen: const StudentDetails()),
     );
   }
 }
@@ -36,6 +45,10 @@ class SidebarLayout extends StatefulWidget {
 
 class _SidebarLayoutState extends State<SidebarLayout> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _logout() {
+    Navigator.of(context).pushReplacementNamed('/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +113,10 @@ class _SidebarLayoutState extends State<SidebarLayout> {
                   ),
                 );
               },
+            ),
+            ListTile(
+              title: const Text('Logout'),
+              onTap: _logout,
             ),
             // Tambahkan lebih banyak item ListTile untuk layar atau fungsionalitas lainnya
           ],
